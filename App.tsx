@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import ScreenWrapper from "./components/ScreenWrapper";
+import { useEffect, useState } from "react";
 
 export default function App() {
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
+  });
+
+  if (loading) {
+    return (
+      <ScreenWrapper center gap={20}>
+        <Text>Carregando...</Text>
+        <ActivityIndicator></ActivityIndicator>
+      </ScreenWrapper>
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ScreenWrapper center>
+      <Text>TELONA</Text>
+    </ScreenWrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
