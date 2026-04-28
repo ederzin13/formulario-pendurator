@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TextInput } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 type FormInputProps = {
   label: string;
@@ -12,11 +12,18 @@ export default function FormInput({
   error,
   placeholder,
 }: FormInputProps) {
+  const [value, setValue] = useState<string | number>("");
+
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
       <View style={styles.container}>
-        <TextInput placeholder={placeholder}></TextInput>
+        <TextInput
+          placeholder={placeholder}
+          onChangeText={(text) => {
+            setValue(text);
+          }}
+        ></TextInput>
       </View>
     </View>
   );
