@@ -25,6 +25,7 @@ export default function ScreenWrapper({
             justifyContent: center ? "center" : "flex-start",
             alignItems: center ? "center" : "flex-start",
             gap: gap,
+            backgroundColor: "#fddef6",
           },
         ]}
       >
