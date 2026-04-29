@@ -19,19 +19,19 @@ export default function ScreenWrapper({
 	return (
 		<SafeAreaProvider>
 			<SafeAreaView
-				style={[
-					{
-						flex: 1,
-						padding,
-						justifyContent: center ? "center" : "flex-start",
-						alignItems: center ? "center" : "flex-start",
-						gap: gap,
-						backgroundColor: "#fff6fd",
-					},
-				]}
+			// style={[
+			// 	{
+			// 		flex: 1,
+			// 		padding,
+			// 		justifyContent: center ? "center" : "flex-start",
+			// 		alignItems: center ? "center" : "flex-start",
+			// 		gap: gap,
+			// 		backgroundColor: "#fff6fd",
+			// 	},
+			// ]}
 			>
 				<KeyboardAvoidingView
-					style={{ flex: 1 }}
+					// style={{ flex: 1 }}
 					behavior={Platform.OS === "ios" ? "padding" : "height"}
 				>
 					<ScrollView>

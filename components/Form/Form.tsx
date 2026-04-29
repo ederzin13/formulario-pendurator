@@ -3,28 +3,30 @@ import React from "react";
 import Logo from "./Logo";
 import FormInput from "./FormInput";
 import DropdownComp from "./DropdownComp";
+import FormButton from "../../FormButton";
 
 export default function Form() {
-  return (
-    <View style={styles.container}>
-      <Logo />
-      <Text style={styles.title}>Pendurator</Text>
-      <DropdownComp></DropdownComp>
-      <FormInput label="Debt" placeholder="R$"></FormInput>
-    </View>
-  );
+	return (
+		<View style={styles.container}>
+			<Logo />
+			<Text style={styles.title}>Pendurator</Text>
+			<DropdownComp></DropdownComp>
+			<FormInput label="Debt" placeholder="R$"></FormInput>
+			<FormButton></FormButton>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 20,
-  },
+	container: {
+		alignItems: "center",
+		justifyContent: "center",
+		gap: 20,
+	},
 
-  title: {
-    fontSize: 25,
-    fontWeight: "600",
-    fontFamily: "Sora_700Bold",
-  },
+	title: {
+		fontSize: 25,
+		fontWeight: "600",
+		fontFamily: "Sora_700Bold",
+	},
 });
