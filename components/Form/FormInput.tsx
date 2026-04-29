@@ -23,6 +23,7 @@ export default function FormInput({
           onChangeText={(text) => {
             setValue(text);
           }}
+          keyboardType="number-pad"
         ></TextInput>
       </View>
     </View>

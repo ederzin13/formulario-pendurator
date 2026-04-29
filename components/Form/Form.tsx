@@ -2,13 +2,15 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import Logo from "./Logo";
 import FormInput from "./FormInput";
+import DropdownComp from "./DropdownComp";
 
 export default function Form() {
   return (
     <View style={styles.container}>
       <Logo />
       <Text style={styles.title}>Pendurator</Text>
-      <FormInput label="Label" placeholder="Fulano"></FormInput>
+      <DropdownComp></DropdownComp>
+      <FormInput label="Debt" placeholder="R$"></FormInput>
     </View>
   );
 }
