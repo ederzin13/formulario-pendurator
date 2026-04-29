@@ -1,9 +1,22 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
 
-export default function FormButton() {
+type FormButtonProps = {
+	isFormValid?: boolean;
+};
+
+export default function FormButton({ isFormValid }: FormButtonProps) {
+	if (isFormValid) {
+		return (
+			//colocar o onPress
+			<Pressable style={styles.container}>
+				<Text style={styles.text}>Submit</Text>
+			</Pressable>
+		);
+	}
+
 	return (
-		<Pressable style={styles.container}>
+		<Pressable style={[styles.container, { backgroundColor: "#888181" }]}>
 			<Text style={styles.text}>Submit</Text>
 		</Pressable>
 	);
@@ -22,5 +35,9 @@ const styles = StyleSheet.create({
 	text: {
 		color: "white",
 		fontFamily: "Sora_500Medium",
+	},
+
+	invalid: {
+		backgroundColor: "#888181",
 	},
 });

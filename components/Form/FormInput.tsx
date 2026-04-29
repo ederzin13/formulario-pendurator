@@ -5,26 +5,30 @@ type FormInputProps = {
 	label: string;
 	placeholder?: string;
 	error?: boolean;
+	value: string;
+	onChangeText: (text: string) => void;
 };
 
 export default function FormInput({
 	label,
-	error,
 	placeholder,
+	error,
+	value,
+	onChangeText,
 }: FormInputProps) {
-	const [value, setValue] = useState<string | number>("");
-
 	return (
 		<View>
 			<Text style={styles.label}>{label}</Text>
+
 			<View style={styles.container}>
 				<TextInput
 					placeholder={placeholder}
-					onChangeText={(text) => {
-						setValue(text);
-					}}
+					onChangeText={onChangeText}
+					value={value}
 					keyboardType="number-pad"
 				></TextInput>
+
+				{error && <Text style={styles.error}>This field is mandatory!</Text>}
 			</View>
 		</View>
 	);
@@ -37,10 +41,17 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: "#6e0649",
 		borderRadius: 5,
+		marginBottom: 10,
 	},
 
 	label: {
 		fontSize: 13,
 		fontFamily: "Sora_500Medium",
+	},
+
+	error: {
+		fontSize: 13,
+		fontFamily: "Sora_500Medium",
+		color: "#530a0a",
 	},
 });
