@@ -13,20 +13,23 @@ const data = [
 ];
 
 export default function Form() {
+  const [selectedClient, setSelectedCLient] = useState<object | null>();
   const [debt, setDebt] = useState("");
+	const [observation, setObservation] = useState("");
+
   const [touched, setTouched] = useState(false);
-	const [selectedClient, setSelectedCLient] = useState({});
+
 
   const [isValid, setIsValid] = useState(false);
   const showError = touched && !isValid;
 
   useEffect(() => {
-    if (debt != "") {
+    if (debt != "" && selectedClient != null) {
       setIsValid(true);
     } else {
       setIsValid(false);
     }
-  }, [debt, isValid]);
+  }, [debt, selectedClient]);
 
   return (
     <View style={styles.container}>
@@ -34,22 +37,33 @@ export default function Form() {
 
       <Text style={styles.title}>Pendurator</Text>
 
-      <DropdownComp data={data} onSelect={(item) => {
-				setSelectedCLient(item);
-			}}></DropdownComp>
+      <DropdownComp
+        data={data}
+        onSelect={(item) => {
+          setSelectedCLient(item);
+        }}
+      ></DropdownComp>
 
       <FormInput
         label="Debt"
         placeholder="R$"
         error={showError}
         value={debt}
+        keyboardType="number-pad"
         onChangeText={(text) => {
           setDebt(text);
           setTouched(true);
         }}
-      ></FormInput>
+      />
 
-      <FormButton isFormValid={isValid} submit={{ debt, selectedClient }}></FormButton>
+      <FormInput label="Observation" placeholder="..." value={observation} onChangeText={(text) => {
+				setObservation(text);
+			}} />
+
+      <FormButton
+        isFormValid={isValid}
+        onSubmit={{ debt, selectedClient, observation }}
+      ></FormButton>
     </View>
   );
 }

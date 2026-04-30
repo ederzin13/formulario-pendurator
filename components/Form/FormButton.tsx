@@ -3,16 +3,16 @@ import React from "react";
 
 type FormButtonProps = {
   isFormValid?: boolean;
-  submit?: object;
+  onSubmit?: object;
 };
 
-export default function FormButton({ isFormValid, submit }: FormButtonProps) {
+export default function FormButton({ isFormValid, onSubmit }: FormButtonProps) {
   if (isFormValid) {
     return (
       <Pressable
         style={styles.container}
         onPress={() => {
-          console.log(submit);
+          console.log(onSubmit);
         }}
       >
         <Text style={styles.text}>Submit</Text>

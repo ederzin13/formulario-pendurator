@@ -6,6 +6,7 @@ type FormInputProps = {
 	placeholder?: string;
 	error?: boolean;
 	value: string;
+	keyboardType?: "number-pad" | "default";
 	onChangeText: (text: string) => void;
 };
 
@@ -14,6 +15,7 @@ export default function FormInput({
 	placeholder,
 	error,
 	value,
+	keyboardType = "default",
 	onChangeText,
 }: FormInputProps) {
 	return (
@@ -25,7 +27,7 @@ export default function FormInput({
 					placeholder={placeholder}
 					onChangeText={onChangeText}
 					value={value}
-					keyboardType="number-pad"
+					keyboardType={keyboardType}
 				></TextInput>
 
 				{error && <Text style={styles.error}>This field is mandatory!</Text>}
