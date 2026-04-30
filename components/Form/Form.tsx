@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Switch } from "react-native";
 import React, { useEffect, useState } from "react";
 import Logo from "./Logo";
 import FormInput from "./FormInput";
 import DropdownComp from "./DropdownComp";
 import FormButton from "./FormButton";
+import SwitchComp from "./SwitchComp";
 
 const data = [
   { label: "Jonas", value: "1" },
@@ -14,11 +15,11 @@ const data = [
 
 export default function Form() {
   const [selectedClient, setSelectedCLient] = useState<object | null>();
-  const [debt, setDebt] = useState("");
-	const [observation, setObservation] = useState("");
+  const [debt, setDebt] = useState<string>("");
+  const [observation, setObservation] = useState<string>("");
+  const [reminder, setReminder] = useState<boolean>(false);
 
   const [touched, setTouched] = useState(false);
-
 
   const [isValid, setIsValid] = useState(false);
   const showError = touched && !isValid;
@@ -56,13 +57,24 @@ export default function Form() {
         }}
       />
 
-      <FormInput label="Observation" placeholder="..." value={observation} onChangeText={(text) => {
-				setObservation(text);
-			}} />
+      <FormInput
+        label="Observation"
+        placeholder="..."
+        value={observation}
+        onChangeText={(text) => {
+          setObservation(text);
+        }}
+      />
+
+      <SwitchComp
+        onToggle={(value) => {
+          setReminder(value);
+        }}
+      ></SwitchComp>
 
       <FormButton
         isFormValid={isValid}
-        onSubmit={{ debt, selectedClient, observation }}
+        onSubmit={{ debt, selectedClient, observation, reminder }}
       ></FormButton>
     </View>
   );
