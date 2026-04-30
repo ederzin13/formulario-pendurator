@@ -3,14 +3,19 @@ import { StyleSheet, Text, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
-const data = [
-  { label: "Jonas", value: "1" },
-  { label: "Janaína", value: "2" },
-  { label: "Jabur", value: "3" },
-  { label: "Jéssica", value: "4" },
-];
+// const data = [
+//   { label: "Jonas", value: "1" },
+//   { label: "Janaína", value: "2" },
+//   { label: "Jabur", value: "3" },
+//   { label: "Jéssica", value: "4" },
+// ];
 
-export default function DropdownComp() {
+type DropdownCompProps = {
+  data: object[];
+  onSelect?: (item: object) => void;
+}
+
+export default function DropdownComp({data, onSelect}: DropdownCompProps) {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 
@@ -46,6 +51,7 @@ export default function DropdownComp() {
         onChange={(item) => {
           setValue(item.value);
           setIsFocus(false);
+          if (onSelect) onSelect(item);
         }}
         renderLeftIcon={() => (
           <AntDesign
