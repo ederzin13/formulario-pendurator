@@ -1,16 +1,26 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "./Logo";
 import FormInput from "./FormInput";
 import DropdownComp from "./DropdownComp";
-import FormButton from "../../FormButton";
+import FormButton from "./FormButton";
 
 export default function Form() {
 	const [debt, setDebt] = useState("");
 	const [touched, setTouched] = useState(false);
 
-	const isValid = debt.trim().length > 0;
+	const [isValid, setIsValid] = useState(false);
 	const showError = touched && !isValid;
+
+	useEffect(() => {
+		if (debt != "") {
+			setIsValid(true);
+		}
+
+		else {
+			setIsValid(false);
+		}
+	}, [debt, isValid])
 
 	return (
 		<View style={styles.container}>
